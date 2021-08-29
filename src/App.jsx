@@ -1,75 +1,36 @@
 import { registerRootComponent } from "expo";
-import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
 import TodoList from "./components/TodoList";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Provider } from "react-redux";
+import { applyMiddleware, createStore } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import thunk from "redux-thunk";
+import logger from "redux-logger";
+import rootStore from "./modules";
+import { NavigationContainer } from "@react-navigation/native";
+import SigninScreen from "./screens/SigninScreen";
+import SignupScreen from "./screens/SignupScreen";
+import TodoListScreen from "./screens/TodoListScreen";
+
+const store = createStore(
+  rootStore,
+  composeWithDevTools(applyMiddleware(thunk, logger))
+);
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
-  const [todoList, setTodoList] = useState([
-    {
-      id: "60f55d44fd6df31769936ee4",
-      content: "asdasdaaaaa",
-      isCompleted: true,
-      publishedDate: "2021-07-19T11:08:52.118Z",
-    },
-    {
-      id: "60f57755fd6df31769936fa4",
-      content: "ㅋㅋ",
-      isCompleted: false,
-      publishedDate: "2021-07-19T13:00:05.139Z",
-    },
-    {
-      id: "60fea06b157ef41d5a5c9868",
-      content: "추가",
-      isCompleted: false,
-      publishedDate: "2021-07-26T11:45:47.018Z",
-    },
-    {
-      id: "60feaea7157ef41d5a5c9881",
-      content: "asdasdasdasd",
-      isCompleted: true,
-      publishedDate: "2021-07-26T12:46:31.833Z",
-    },
-  ]);
-
-  const onCreateTodo = (content) => {
-    setTodoList(
-      todoList.concat({
-        id: Date.now(),
-        content,
-        isCompleted: false,
-        publishedDate: Date.now(),
-      })
-    );
-  };
-
-  const onDeleteTodo = (id) => {
-    setTodoList(todoList.filter((todo) => todo.id !== id));
-  };
-
-  const onEditTodo = (id, content) => {
-    setTodoList(
-      todoList.map((todo) => (todo.id === id ? { ...todo, content } : todo))
-    );
-  };
-
-  const onToggleTodo = (id) => {
-    setTodoList(
-      todoList.map((todo) =>
-        todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
-      )
-    );
-  };
-
-  if (!todoList) return;
   return (
-    <TodoList
-      todoList={todoList}
-      onCreateTodo={onCreateTodo}
-      onDeleteTodo={onDeleteTodo}
-      onEditTodo={onEditTodo}
-      onToggleTodo={onToggleTodo}
-    />
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Signin">
+          <Stack.Screen name="Signin" component={SigninScreen} />
+          <Stack.Screen name="Signup" component={SignupScreen} />
+          <Stack.Screen name="TodoList" component={TodoListScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 };
 
