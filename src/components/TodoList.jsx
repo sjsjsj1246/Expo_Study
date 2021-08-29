@@ -9,8 +9,11 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  NativeModules,
 } from "react-native";
 import TodoItem from "./TodoItem";
+
+const { StatusBarManager } = NativeModules;
 
 const TodoList = ({
   todoList,
@@ -19,6 +22,7 @@ const TodoList = ({
   onEditTodo,
   onToggleTodo,
 }) => {
+  const [statusBarHeight, setStatusBarHeight] = useState(0);
   const [input, setInput] = useState();
 
   const handleCreateTodo = (content) => {
@@ -27,15 +31,20 @@ const TodoList = ({
     Keyboard.dismiss();
   };
 
+  useEffect(() => {
+    Platform.OS == "ios"
+      ? StatusBarManager.getHeight((statusBarFrameData) => {
+          setStatusBarHeight(statusBarFrameData.height);
+        })
+      : null;
+  }, []);
+
   return (
     <View style={styles.container}>
-      {/* <View style={styles.title}>
-        <Text style={styles.titleText}>TODO_LIST</Text>
-      </View> */}
       <KeyboardAvoidingView
         style={styles.keyboardAvoiding}
         behavior="padding"
-        enabled
+        keyboardVerticalOffset={statusBarHeight + 50}
       >
         <ScrollView style={styles.todoListWrapper}>
           {todoList.map((todo) => (
