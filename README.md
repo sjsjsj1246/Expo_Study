@@ -32,6 +32,19 @@
   - KeyboardAvoidingView로 자판이 올라올 때 뷰를 자동으로 조절해준다!
   - Keyboard.dismiss();로 자판을 내릴 수 있다.
 
+## 2차 커밋
+
+| 결                                                                                                                                                 | 과                                                                                                                                                 |
+| -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![KakaoTalk_Photo_2021-08-30-05-01-20 001](https://user-images.githubusercontent.com/24623403/131263826-d757e6fc-4e19-4ad4-accb-fe6c1e34dd46.jpeg) | ![KakaoTalk_Photo_2021-08-30-05-01-20 002](https://user-images.githubusercontent.com/24623403/131263829-394c6f7d-e505-4658-911a-7d0e895ed1f0.jpeg) |
+| ![KakaoTalk_Photo_2021-08-30-05-01-20 003](https://user-images.githubusercontent.com/24623403/131263830-72d1abe1-cda8-4de2-8b18-08819568de73.jpeg) | ![KakaoTalk_Photo_2021-08-30-05-01-20 004](https://user-images.githubusercontent.com/24623403/131263834-47143f75-fb1b-4505-b6e0-7638b4c20dcc.jpeg) |
+
+- 리덕스 적용하기
+  - react와 똑같음
+- API 통신
+  - 브라우저와 달리 CORS에러가 나지 않아 Proxy설정을 안해줘도 된다. axios로 통신함
+- 화면 이동을 위해 react-navigation을 사용했다. Stack 방식으로 이전에 있었던 화면을 기억하고 있는 것 같으나 필요없을 때가 있어 공식문서를 더 봐야할 것 같다.
+
 ## Error Handle
 
 가끔 네트워크 오류 뜰 때 : export REACT_NATIVE_PACKAGER_HOSTNAME={컴퓨터의 IP}
