@@ -29,9 +29,9 @@ const TodoList = ({
 
   return (
     <View style={styles.container}>
-      <View style={styles.title}>
+      {/* <View style={styles.title}>
         <Text style={styles.titleText}>TODO_LIST</Text>
-      </View>
+      </View> */}
       <KeyboardAvoidingView
         style={styles.keyboardAvoiding}
         behavior="padding"

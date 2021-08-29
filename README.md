@@ -2,6 +2,12 @@
 
 ## 기록
 
+### 관련 공식 문서
+
+- react-native : https://reactnative.dev/docs/getting-started
+- expo : https://docs.expo.dev/
+- react-navigation : https://reactnavigation.org/docs
+
 ### 1차 커밋
 
 | 결                                                                                                                                             | 과                                                                                                                                             |
