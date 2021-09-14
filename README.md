@@ -48,3 +48,5 @@
 ## Error Handle
 
 가끔 네트워크 오류 뜰 때 : export REACT_NATIVE_PACKAGER_HOSTNAME={컴퓨터의 IP}
+
+- Linking requires a build-time setting `scheme` in the project's Expo config (app.config.js or app.json) for production apps, if it's left blank, your app may crash. 경고가 뜰 때는 app.json에 "scheme"을 추가해주자
