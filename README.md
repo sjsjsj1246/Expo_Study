@@ -45,8 +45,29 @@
   - 브라우저와 달리 CORS에러가 나지 않아 Proxy설정을 안해줘도 된다. axios로 통신함
 - 화면 이동을 위해 react-navigation을 사용했다. Stack 방식으로 이전에 있었던 화면을 기억하고 있는 것 같으나 필요없을 때가 있어 공식문서를 더 봐야할 것 같다.
 
+## 이건 뭘까
+
+- { StatusBar } from "expo-status-bar"
+  - 상태 표시줄을 제어하여 텍스트 색상, 배경 색상을 변경하고, 숨기고, 반투명 또는 불투명하게 만들고, 이러한 변경 사항에 애니메이션을 적용할 수 있는 구성 요소 및 명령형 인터페이스를 제공합니다. StatusBar구성 요소 로 정확히 수행할 수 있는 작업 은 사용 중인 플랫폼에 따라 다릅니다.
+- { SafeAreaProvider } from "react-native-safe-area-context";
+  - 장치 안전 영역 삽입 정보에 액세스하기 위한 유연한 API를 제공합니다. 이를 통해 노치, 상태 표시줄, 홈 표시기 및 기타 장치 및 운영 체제 인터페이스 요소 주위에 콘텐츠를 적절하게 배치할 수 있습니다. 또한 안전한 영역을 설명하기 위해 보기를 자동으로 삽입하는 SafeAreaView대신 사용할 수 있는 구성 요소를 제공합니다
+
 ## Error Handle
 
 가끔 네트워크 오류 뜰 때 : export REACT_NATIVE_PACKAGER_HOSTNAME={컴퓨터의 IP}
 
 - Linking requires a build-time setting `scheme` in the project's Expo config (app.config.js or app.json) for production apps, if it's left blank, your app may crash. 경고가 뜰 때는 app.json에 "scheme"을 추가해주자
+
+- useColorScheme이 항상 light만 반환을 할 때
+  - app.json에 다음을 추가한다.
+    `"userInterfaceStyle": "automatic",`
+  - 그래도 안된다면 다음을 추가한다.
+  ```json
+      "android": {
+        "userInterfaceStyle": "automatic"
+      },
+      "ios": {
+        "supportsTablet": true,
+        "userInterfaceStyle": "automatic"
+      },
+  ```
